@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 # Checkov
-function run_checkov {
-  echo Now running Checkov on all cases
-  docker pull bridgecrew/checkov:latest
-  docker run -t -v $PWD:/tf bridgecrew/checkov --version >version_checkov.txt
-  find . -name "main.tf" -exec dirname {} \; | grep -v "\.terraform" | while read -r test_case; do
-    echo $test_case
-    ORG_PATH=$PWD
-    cd $test_case
-    if [ ! -f checkov_results.txt ]; then docker run -t -v $PWD:/tf bridgecrew/checkov --quiet -d /tf | sed 's/\[[0-9;]*m//g' | sed "s~$ORG_PATH~tool-compare~" >checkov_results.txt; fi
-    cd $ORG_PATH
-  done
-}
+# function run_checkov {
+#   echo Now running Checkov on all cases
+#   docker pull bridgecrew/checkov:latest
+#   docker run -t -v $PWD:/tf bridgecrew/checkov --version >version_checkov.txt
+#   find . -name "main.tf" -exec dirname {} \; | grep -v "\.terraform" | while read -r test_case; do
+#     echo $test_case
+#     ORG_PATH=$PWD
+#     cd $test_case
+#     if [ ! -f checkov_results.txt ]; then docker run -t -v $PWD:/tf bridgecrew/checkov --quiet -d /tf | sed 's/\[[0-9;]*m//g' | sed "s~$ORG_PATH~tool-compare~" >checkov_results.txt; fi
+#     cd $ORG_PATH
+#   done
+# }
 
 # tfsec
 function run_tfsec {
