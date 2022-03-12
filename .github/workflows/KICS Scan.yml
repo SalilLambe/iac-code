@@ -21,10 +21,7 @@ jobs:
           output_path: results-dir
           platform_type: terraform
           profiling: MEM
-          output_formats: 'json,pdf'
-      - name: Show results
-        run: |
-          cat results-dir/results.json
+          output_formats: 'html'      
       - name: Commit files
         run: |
             git config --local user.email "lambay.salil@gmail.com"
