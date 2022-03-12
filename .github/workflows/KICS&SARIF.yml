@@ -30,7 +30,11 @@ jobs:
         run: |
           cat results-dir/results.sarif
           cat results-dir/results.json
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
+      - name: Update Findings
+        uses: andstor/copycat-action@v3
         with:
-          sarif_file: results-dir/results.sarif
+          personal_token: ${{ secrets.REPO_TOKEN }}
+          src_path: /results-dir/
+          dst_path: /.
+          dst_owner: SalilLambe
+          dst_repo_name: iac-code
