@@ -13,7 +13,7 @@ jobs:
       - name: Mkdir results-dir
         # make sure results dir is created
         run: mkdir -p results-dir
-      - name: Run KICS Scan with SARIF result
+      - name: Run KICS Scan
         uses: checkmarx/kics-github-action@v1.4
         with:
           path: 'test-cases/terraform/'
@@ -25,16 +25,17 @@ jobs:
           # - results-dir/results.sarif
           output_path: results-dir
           platform_type: terraform
-          output_formats: 'json,sarif'
+          output_formats: 'json,pdf'
       - name: Show results
         run: |
-          cat results-dir/results.sarif
           cat results-dir/results.json
-      - name: Update Findings
-        uses: andstor/copycat-action@v3
+      - name: Commit files
+        run: |
+            git config --local user.email "lambay.salil@gmail.com"
+            git config --local user.name "Salil"
+            git commit -m "Report Added" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          personal_token: ${{ secrets.REPO_TOKEN }}
-          src_path: /results-dir/
-          dst_path: /.
-          dst_owner: SalilLambe
-          dst_repo_name: iac-code
+          github_token: ${{ secrets.REPO_TOKEN }}
+          branch: ${{ github.ref }}
