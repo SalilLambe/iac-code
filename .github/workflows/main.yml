@@ -13,6 +13,7 @@ jobs:
             fetch-depth: 0
         # Scan Iac with kics
         - name: run kics Scan
+          continue-on-error: true
           uses: Checkmarx/kics-github-action@v1.4
           with:
             # scanning two directories: ./terraform/ ./cfn-templates/ plus a single file
