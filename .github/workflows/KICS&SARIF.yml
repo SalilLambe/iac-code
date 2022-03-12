@@ -20,6 +20,7 @@ jobs:
           ignore_on_exit: results
           output_path: results-dir
           platform_type: terraform
+          profiling: MEM
           output_formats: 'json,pdf'
       - name: Show results
         run: |
