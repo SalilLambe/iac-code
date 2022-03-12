@@ -18,11 +18,6 @@ jobs:
         with:
           path: 'test-cases/terraform/'
           ignore_on_exit: results
-          # when provided with a directory on output_path
-          # it will generate the specified reports file named 'results.{extension}'
-          # in this example it will generate:
-          # - results-dir/results.json
-          # - results-dir/results.sarif
           output_path: results-dir
           platform_type: terraform
           output_formats: 'json,pdf'
