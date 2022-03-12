@@ -1,4 +1,4 @@
-name: scan with KICS and upload SARIF
+name: scan with KICS
 
 on:
   workflow_dispatch:
@@ -33,6 +33,7 @@ jobs:
         run: |
             git config --local user.email "lambay.salil@gmail.com"
             git config --local user.name "Salil"
+            git add .
             git commit -m "Report Added" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
